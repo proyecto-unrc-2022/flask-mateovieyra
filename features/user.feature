@@ -14,7 +14,7 @@ Feature: Handle storing, retrieving and deleting customer details # test/feature
     Then I should get a '201' response 
     And the following response is returned:
       """
-      {"status":"true"}
+      {"status": "true"}
       """
     Then I retrieve the customer 'mateo'
     Then I should get a '200' response
