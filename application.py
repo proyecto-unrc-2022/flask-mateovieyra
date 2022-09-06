@@ -1,4 +1,5 @@
 from flask import Flask, jsonify, request, Response, make_response
+import json
 
 app = Flask(__name__)
 
@@ -27,10 +28,8 @@ def access_users(username):
 def add_user():
     if request.method == 'POST':
         USERS.update(request.json)
-        return make_response(
-            jsonify({"status":"true"}),
-            201
-        )
+        new_user_name = list(request.json.keys())[0]
+        return Response(json.dumps({"status":"true"}), 201, {"location": f'users/{new_user_name}'})
     elif request.method == 'GET':
         if USERS:
             return make_response(jsonify(USERS))
